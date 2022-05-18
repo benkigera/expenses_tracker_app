@@ -41,8 +41,13 @@ class MyHomePage extends StatelessWidget {
           children: [
             Card(
               child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  decoration: BoxDecoration(),
                   width: double.infinity,
-                  child: Text(
+                  child: const Text(
                     'CHART',
                   )),
               elevation: 5,
@@ -50,8 +55,38 @@ class MyHomePage extends StatelessWidget {
             Column(
               children: transactions.map((tx) {
                 return Card(
-                  child: Text(tx.title),
-                );
+                    child: Row(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 15,
+                        ),
+                        decoration: BoxDecoration(border: Border.all()),
+                        child: Text(
+                          tx.amount.toString(),
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.purple),
+                        )),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(tx.title,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            )),
+                        Text(
+                          tx.date.toString(),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ));
               }).toList(),
             )
           ],
