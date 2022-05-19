@@ -43,7 +43,7 @@ class _NewTransactionState extends State<NewTransaction> {
               },
               controller: titleController,
               decoration:
-                  InputDecoration(icon: Icon(Icons.start), labelText: 'Title'),
+                  InputDecoration(icon: Icon(Icons.star), labelText: 'Title'),
               onSubmitted: (_) => submitData(),
             ),
             TextField(
@@ -53,8 +53,9 @@ class _NewTransactionState extends State<NewTransaction> {
                 //titleInput = val;
               },
               controller: amountController,
-              decoration:
-                  InputDecoration(icon: Icon(Icons.start), labelText: 'Amount'),
+              decoration: InputDecoration(
+                  icon: Icon(Icons.monetization_on_outlined),
+                  labelText: 'Amount'),
             ),
             TextButton(
               child: Text("Add Transaction"),

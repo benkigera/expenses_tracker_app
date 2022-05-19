@@ -10,7 +10,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 20,
+                fontWeight: FontWeight.bold)),
+      ),
       home: MyHomePage(),
     );
   }
@@ -40,18 +50,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<Transaction> _userTransaction = [
-    Transaction(
-      id: "t1",
-      title: "New shoes",
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t1",
-      title: "Weekly groceries",
-      amount: 16.53,
-      date: DateTime.now(),
-    )
+    // Transaction(
+    //   id: "t1",
+    //   title: "New shoes",
+    //   amount: 69.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: "t1",
+    //   title: "Weekly groceries",
+    //   amount: 16.53,
+    //   date: DateTime.now(),
+    // )
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
@@ -69,47 +79,47 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      showSemanticsDebugger: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter App'),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {},
-            )
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Personal Expenses',
+          style: TextStyle(fontFamily: 'OPen Sans'),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Card(
+              child: Container(
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  decoration: const BoxDecoration(),
+                  width: double.infinity,
+                  child: const Text(
+                    'CHART',
+                  )),
+              elevation: 5,
+            ),
+            TransactionList(_userTransaction)
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Card(
-                child: Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    decoration: const BoxDecoration(),
-                    width: double.infinity,
-                    child: const Text(
-                      'CHART',
-                    )),
-                elevation: 5,
-              ),
-              TransactionList(_userTransaction)
-            ],
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            startAddNewTransaction(context);
-          },
-        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          startAddNewTransaction(context);
+        },
       ),
     );
   }
