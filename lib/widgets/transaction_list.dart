@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/models/transaction.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/number_symbols_data.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transaction;
@@ -24,7 +25,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(border: Border.all()),
                   child: Text(
-                    "\$ ${transaction[index].amount}",
+                    "\$ ${transaction[index].amount.toStringAsFixed(2)}",
                     style: const TextStyle(fontSize: 20, color: Colors.purple),
                   )),
               Column(
