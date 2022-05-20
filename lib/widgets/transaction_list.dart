@@ -49,6 +49,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     subtitle: Text(
                         DateFormat.yMMMd().format(transaction[index].date)),
+                    trailing: Icon(Icons.delete),
                   ),
                 );
               },
