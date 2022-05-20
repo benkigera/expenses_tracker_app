@@ -29,6 +29,19 @@ class _NewTransactionState extends State<NewTransaction> {
     Navigator.of(context).pop();
   }
 
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -57,10 +70,29 @@ class _NewTransactionState extends State<NewTransaction> {
                   icon: Icon(Icons.monetization_on_outlined),
                   labelText: 'Amount'),
             ),
-            TextButton(
+            Container(
+              padding: EdgeInsets.all(20),
+              height: 70,
+              child: Row(
+                children: [
+                  Text('No Date Chosen'),
+                  TextButton(
+                    onPressed: _presentDatePicker,
+                    child: Text(
+                      'Choose Date',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(
+                          Theme.of(context).primaryColor),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
               child: Text("Add Transaction"),
-              style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all(Colors.purple)),
+              style: ElevatedButton.styleFrom(onPrimary: Colors.white),
               onPressed: submitData,
             )
           ],
