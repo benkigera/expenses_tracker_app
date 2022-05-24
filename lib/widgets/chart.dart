@@ -39,7 +39,23 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Card(
+    return  TransactionItem(groupedTransactionValues: groupedTransactionValues, totalSpending: totalSpending);
+  }
+}
+
+class TransactionItem extends StatelessWidget {
+  const TransactionItem({
+    Key key,
+    @required this.groupedTransactionValues,
+    @required this.totalSpending,
+  }) : super(key: key);
+
+  final List<Map<String, Object>> groupedTransactionValues;
+  final double totalSpending;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
         elevation: 6,
         margin: EdgeInsets.all(20),
         child: Padding(
